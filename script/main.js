@@ -71,10 +71,9 @@ function displayMultiply(digit) {
     return str;
 }
 
-const digit = 7;
+let digit = 7;
 console.log("Exo 5 : table de multiplication de " + digit)
 console.log(displayMultiply(digit));
-
 
 /**
  * Utility to find an element inside an array
@@ -89,3 +88,248 @@ function existsInArray(element, array) {
     }
     return false;
 }
+
+/**
+ * Exo 6
+ */
+
+function addUpTo(max) {
+    let tmpRes = 0;
+    for (let i = 1; i <= max; i++) {
+        tmpRes += i;
+    }
+    return tmpRes;
+}
+
+digit = 5;
+console.log("Exo 6 : add up to " + digit)
+console.log(addUpTo(digit));
+
+/**
+ * Exo 7
+ */
+
+function displayVowels() {
+    return ['a','e', 'i', 'o', 'u', 'y'];
+}
+
+console.log("Exo 7 : display vowels")
+console.log(displayVowels());
+
+/**
+ * Exo 8
+ */
+
+function getAverage(grades) {
+    let tmpAvg = 0;
+    const nbGrades = grades.length;
+    for (let i = 0; i < nbGrades; i++) {
+        tmpAvg += grades[i];
+    }
+    return (tmpAvg / nbGrades).toFixed(2);
+}
+
+const grades = [14, 16, 17, 13, 18, 2, 14];
+console.log("Exo 8 : average of " + grades)
+console.log(getAverage(grades));
+
+/**
+ * Exo 9
+ */
+
+function addArray(firstArray, secondArray) {
+    const firstArrayLength = firstArray.length;
+    const tmpArray = [];
+
+    if (firstArrayLength !== secondArray.length) {
+        return tmpArray;
+    }
+    for (let i = 0; i < firstArrayLength; i++) {
+        tmpArray[i] = firstArray[i] + secondArray[i];
+    }
+
+    return tmpArray;
+}
+
+const firstArray = [4, 8, 7, 9, 1, 5, 4, 6];
+const secondArray = [7, 6, 5, 2, 1, 3, 7, 4];
+console.log("Exo 9 : add array [" + firstArray + "] to [" + secondArray + "]");
+console.log(addArray(firstArray, secondArray));
+
+/**
+ * Exo 10
+ */
+
+function removeDuplicate(tmpArray) {
+    // Initialiser un nouveau tableau vide (newArray)
+    const newArray = [];
+    // Parcourir le tableau "tmpArray" en paramètre
+    for (let i = 0; i < tmpArray.length; i++) {
+        const element = tmpArray[i];
+        // Si "element" de "tmpArray" n'existe pas dans "newArray"
+        if (!existsInArray(element, newArray)) {
+            // Alors on ajoute "element" dans "newArray"
+            newArray.push(element);
+        }
+    }
+    // Renvoyer "newArray"
+    return newArray;
+}
+
+const data = [1, 1, 2, 3, 4, 5, 3, 5, 4, 7];
+console.log("Exo 10 : remove duplicate from " + data)
+console.log(removeDuplicate(data));
+
+/**
+ * Exo 11
+ */
+
+function inverseWord(str) {
+    let newStr = '';
+    for (let i = str.length - 1; i >= 0; i--) {
+        newStr += str[i];
+    }
+    return newStr;
+}
+
+let word = "espion";
+console.log("Exo 11 : inverseWord " + word)
+console.log(inverseWord(word));
+
+/**
+ * Exo 12
+ */
+
+function isSecuredPassword(str) {
+    return str.length >= 9 && (existsInArray("@", str) || existsInArray("!", str));
+}
+
+let pwd = "espion";
+console.log("Exo 12 : ");
+console.log(pwd + " is a secure password ? " + isSecuredPassword(pwd));
+pwd = "espion@";
+console.log(pwd + " is a secure password ? " + isSecuredPassword(pwd));
+pwd = "espionnage";
+console.log(pwd + " is a secure password ? " + isSecuredPassword(pwd));
+pwd = "espionn@ge";
+console.log(pwd + " is a secure password ? " + isSecuredPassword(pwd));
+pwd = "espionnage!";
+console.log(pwd + " is a secure password ? " + isSecuredPassword(pwd));
+
+/**
+ * Exo 13
+ */
+
+function excerpt(str, from = 14) {
+    // if (str.length <= from) return str; => même chose qu'en-dessous !
+    if (str.length <= from) {
+        return str;
+    }
+
+    return str.substring(0, from) + "...";
+}
+
+word = "Lorem quisque class vestibulum";
+console.log("Exo 13 : excerpt ")
+console.log(excerpt(word));
+
+/**
+ * Exo 14
+ */
+
+function sanitizeString(str) {
+    return str.toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
+function isPangram(str) {
+    let tmpStr = '';
+    const avoidedCharacters = " '.,;?!"
+    str = sanitizeString(str);
+
+    for (const letter of str) {
+        if (!existsInArray(letter, avoidedCharacters) && !existsInArray(letter, tmpStr)) {
+            tmpStr += letter;
+        }
+    }
+
+    return tmpStr.length === 26;
+}
+
+word = "The quick brown fôx jumps over thé lazy dög !";
+console.log("Exo 14 : isPangram ")
+console.log(isPangram(word));
+
+/**
+ * Exo 15
+ */
+
+function getRange(anArray) {
+    let min = anArray[0],
+        max = anArray[0];
+
+    for (const elt of anArray) {
+        if (elt < min) {
+            min = elt;
+        }
+        if (elt > max) {
+            max = elt;
+        }
+    }
+
+    return max - min;
+}
+
+const anArray = [15, 78, 45, 96, 12, 32, 65, 78, 91];
+console.log("Exo 15 : getRange of [" + anArray + "]");
+console.log(getRange(anArray));
+
+/**
+ * Exo 16
+ */
+
+function isPalindrome(str) {
+    let tmpStr = '';
+    str = sanitizeString(str);
+
+    for(let i = str.length - 1; i >= 0; i--) {
+        tmpStr += str[i];
+    }
+
+    return tmpStr === str;
+    // Same code as last instruction
+    // if (tmpStr === str) {
+    //     return true;
+    // }
+    // return false;
+}
+
+let palindrome = "ressasser"
+console.log("Exo 16 : isPalindrome ");
+console.log("isPalindrome for " + palindrome + " ? " + isPalindrome(palindrome));
+palindrome = "rêver"
+console.log("isPalindrome for " + palindrome + " ? " + isPalindrome(palindrome));
+palindrome = "toto"
+console.log("isPalindrome for " + palindrome + " ? " + isPalindrome(palindrome));
+
+/**
+ * Exo 17
+ */
+
+function getScrabbleScore(str) {
+    let points = 0;
+    const lettersByPoints = new Map();
+    lettersByPoints.set("AEIOULNRST", 1);
+    lettersByPoints.set("DG", 2);
+
+    lettersByPoints.forEach((value, key) => {
+        // increment points ?
+    });
+
+    return points;
+}
+
+const word = "lazy";
+console.log("Exo 17 : getScrabbleScore of " + word);
+console.log(getScrabbleScore(word));
