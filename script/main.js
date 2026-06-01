@@ -330,6 +330,6 @@ function getScrabbleScore(str) {
     return points;
 }
 
-const word = "lazy";
+word = "lazy";
 console.log("Exo 17 : getScrabbleScore of " + word);
 console.log(getScrabbleScore(word));
