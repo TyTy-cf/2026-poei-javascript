@@ -77,8 +77,8 @@
   - levelUpIntelligenceGain
 
 - Warrior :
-  - levelUpStrengthGain : 3.2
-  - levelUpAgilityGain : 1.3
+  - levelUpStrengthGain : 2.9
+  - levelUpAgilityGain : 1.2
   - levelUpIntelligenceGain : 1.4
 
 - Rogue :
