@@ -322,14 +322,48 @@ function getScrabbleScore(str) {
     const lettersByPoints = new Map();
     lettersByPoints.set("AEIOULNRST", 1);
     lettersByPoints.set("DG", 2);
+    lettersByPoints.set("BCMP", 3);
+    lettersByPoints.set("FHVWY", 4);
+    lettersByPoints.set("K", 5);
+    lettersByPoints.set("JX", 8);
+    lettersByPoints.set("QZ", 10);
 
-    lettersByPoints.forEach((value, key) => {
-        // increment points ?
-    });
+    str = str.toUpperCase();
 
+    // Pour chaque lettre du mot "str"
+    for (const letter of str) {
+        // .keys() => récupère un tableau de TOUTES les clés de la map
+        for (const key of lettersByPoints.keys()) {
+            // Si la lettre existe dans la clé de la map, alors
+            if (existsInArray(letter, key)) {
+                // additionner le nombe de points de la lettre dans la variable "points"
+                points += lettersByPoints.get(key); // get the value
+                break;
+            }
+        }
+    }
+
+    // retourner "points"
     return points;
 }
 
 word = "lazy";
 console.log("Exo 17 : getScrabbleScore of " + word);
 console.log(getScrabbleScore(word));
+
+/**
+ * Exo 18
+ */
+
+function changeSentences(sentences) {
+    // initialiser une variable "modifiedSentence"
+    // pour chaque lettre de "sentences"
+    // ajouter la lettre à "modifiedSentence"
+    // si la lettre est une voyelle, alors on ajoute "fe" et on ajoute de nouveau la lettre
+    // finpour
+    // retourner modifiedSentence
+}
+
+word = "chafeat";
+console.log("Exo 18 : changeSentences of " + word);
+console.log(changeSentences(word));
