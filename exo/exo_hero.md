@@ -61,3 +61,32 @@
   - Si c'est un crit, alors on ajoute le coefficient multiplicateur de crit du héro
 - La défense est une réduction en %, par exemple un héro qui a 3 de défense, subit : (100 - defense * 2) / 100 => 0.94 ; coefficient à multiplier par les dégâts
 - Une fois les dégâts subient calculés, on les soustrait aux points de vie du héro défenseur
+
+
+### Faire une fonction pour monter de niveau
+
+- Créer une function "levelUp" dans la classe Hero
+- Elle se contente de monter de niveau le hero de 1
+- Elle sera appelée dans la fonction "fight", si le hero courant (this) tue le hero en paramètre, alors il monte de niveau
+- Monter de niveau revient à faire "level++"
+- Mais aussi à augmenter ses stats, recalculer sa plage de dégâts, sa barre de HP, mana, etc
+- Monter de niveau ne soigne pas le Hero
+- Cela implique de gérer 3 nouveaux attributs dans le Hero : 
+  - levelUpStrengthGain
+  - levelUpAgilityGain
+  - levelUpIntelligenceGain
+
+- Warrior :
+  - levelUpStrengthGain : 3.2
+  - levelUpAgilityGain : 1.3
+  - levelUpIntelligenceGain : 1.4
+
+- Rogue :
+  - levelUpStrengthGain : 1.9
+  - levelUpAgilityGain : 3.6
+  - levelUpIntelligenceGain : 1.3
+
+- Mage :
+  - levelUpStrengthGain : 2.2
+  - levelUpAgilityGain : 1.1
+  - levelUpIntelligenceGain : 4
