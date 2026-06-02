@@ -380,10 +380,14 @@ console.log(changeSentences(word));
  * Exo 19
  */
 
+function getAlphabet() {
+    return "abcdefghijklmnopqrstuvwxyz";
+}
+
 function encryptDecrypt(str, gap) {
     str = str.toLowerCase();
     // Initialiser une variable avec l'alphabet complet
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const alphabet = getAlphabet();
     const avoidedCharacters = " '.,;?!"
     let encryptWord = '';
     // pour chaque lettre du mot "str"
@@ -418,3 +422,133 @@ const h = 5;
 const w = 7;
 console.log("Exo 20 : calculateHypotenuse with h : " + h + " and w : " + w);
 console.log(calculateHypotenuse(h, w));
+
+/**
+ * Exo 21
+ */
+
+function getGain(nbSubscribers) {
+    let gain = nbSubscribers * 4.99;
+    let percent = 8;
+    if (nbSubscribers < 100) {
+        percent = 40;
+    } else if (nbSubscribers < 500) {
+        percent = 25;
+    } else if (nbSubscribers < 1000) {
+        percent = 15;
+    }
+
+    const streamerGain = gain * ((100 - percent) / 100);
+    const websiteGain = gain * (percent / 100);
+
+    return "Le streamer gagne " + streamerGain.toFixed(2) +
+        " ; le site gagne " + websiteGain.toFixed(2);
+}
+
+console.log("Exo 21 : getGain");
+console.log(getGain(42));
+console.log(getGain(142));
+console.log(getGain(542));
+console.log(getGain(1542));
+
+/**
+ * Exo 22
+ */
+
+function displayHoursByTime(time) {
+    let hours = Math.floor(time / 3600);
+    let minutes = Math.floor((time % 3600) / 60);
+
+    if (hours < 10) {
+        hours = "0" + hours;
+    }
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    return hours + "h" + minutes;
+}
+
+console.log("Exo 22 : displayHoursByTime");
+console.log(displayHoursByTime(12780));
+
+/**
+ * Exo 23
+ */
+
+function getLettersBy(str) {
+    const vowels = displayVowels();
+    let vowelsCount = 0;
+    let consonantCount = 0;
+    const avoidedCharacters = " '.,;?!"
+    str = sanitizeString(str)
+        .toLowerCase();
+
+    for (const letter of str) {
+        if (!existsInArray(letter, avoidedCharacters)) {
+            if (existsInArray(letter, vowels)) {
+                vowelsCount++;
+            } else {
+                consonantCount++;
+            }
+        }
+    }
+
+    return 'Il y a ' + vowelsCount + ' voyelles et ' + consonantCount + ' consonnes dans la chaine de caractères "' + str + '"';
+}
+
+word = "Dobry wieczór, cristaline";
+console.log("Exo 23 : getLettersBy for " + word);
+console.log(getLettersBy(word));
+
+/**
+ * Exo 24
+ */
+
+function randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+function generateLetters() {
+    const letters = [];
+    const vowels = displayVowels();
+    const consonants = 'bcdfghjklmnpqrstvwxz';
+
+    while (letters.length !== 9) {
+        const letter = prompt("Consonne ou voyelle ?");
+        if (letter !== 'C' && letter !== 'V') {
+            alert("Consonne ou voyelle est demandée !");
+            continue;
+        }
+
+        let aLetter = vowels[randomBetween(0, vowels.length - 1)];
+        if (letter === 'C') {
+            aLetter = consonants[randomBetween(0, consonants.length - 1)];
+        }
+
+        alert(aLetter + " a été généré !");
+        letters.push(aLetter);
+    }
+
+    return letters;
+}
+
+console.log("Exo 24 : generateLetters");
+// console.log(generateLetters());
+
+/**
+ * Exo 26
+ */
+
+
+
+
+
+
+
+
+
+
+
+
