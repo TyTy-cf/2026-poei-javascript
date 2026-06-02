@@ -1,3 +1,5 @@
+const rlS = require('readline-sync');
+
 /**
  * Exo 1
  */
@@ -6,7 +8,7 @@ function predictFuture(hours, minutes) {
     return "Dans 1 minute il sera " + hours + "h" + (minutes + 1);
 }
 
-console.log("Exo 1 : prediction du futur pour 10h15 : " + predictFuture(10, 15));
+// console.log("Exo 1 : prediction du futur pour 10h15 : " + predictFuture(10, 15));
 
 /**
  * Exo 2
@@ -24,11 +26,7 @@ function calculatePriceBy(copy) {
     return copy * price;
 }
 
-console.log("Exo 3 : reprographie")
-console.log(calculatePriceBy(8));
-console.log(calculatePriceBy(39));
-console.log(calculatePriceBy(72));
-console.log(calculatePriceBy(150));
+// console.log(calculatePriceBy(8));
 
 /**
  * Exo 3
@@ -41,7 +39,7 @@ function getAge(year) {
     return currentYear - year;
 }
 
-console.log("Exo 3 : Né en 2000, tu as " + getAge(2000) + " ans ");
+// console.log("Exo 3 : Né en 2000, tu as " + getAge(2000) + " ans ");
 
 /**
  * Exo 4
@@ -55,9 +53,7 @@ function countUpToTen(startFrom) {
     return str;
 }
 
-const nb = 17;
-console.log("Exo 4 : on compte depuis " + nb + " jusqu'à " + (nb + 10));
-console.log(countUpToTen(nb));
+// console.log(countUpToTen(17));
 
 /**
  * Exo 5
@@ -71,9 +67,7 @@ function displayMultiply(digit) {
     return str;
 }
 
-let digit = 7;
-console.log("Exo 5 : table de multiplication de " + digit)
-console.log(displayMultiply(digit));
+// console.log(displayMultiply(7));
 
 /**
  * Utility to find an element inside an array
@@ -101,9 +95,7 @@ function addUpTo(max) {
     return tmpRes;
 }
 
-digit = 5;
-console.log("Exo 6 : add up to " + digit)
-console.log(addUpTo(digit));
+// console.log(addUpTo(5));
 
 /**
  * Exo 7
@@ -113,8 +105,7 @@ function displayVowels() {
     return ['a','e', 'i', 'o', 'u', 'y'];
 }
 
-console.log("Exo 7 : display vowels")
-console.log(displayVowels());
+// console.log(displayVowels());
 
 /**
  * Exo 8
@@ -129,9 +120,7 @@ function getAverage(grades) {
     return (tmpAvg / nbGrades).toFixed(2);
 }
 
-const grades = [14, 16, 17, 13, 18, 2, 14];
-console.log("Exo 8 : average of " + grades)
-console.log(getAverage(grades));
+// console.log(getAverage([14, 16, 17, 13, 18, 2, 14]));
 
 /**
  * Exo 9
@@ -151,10 +140,7 @@ function addArray(firstArray, secondArray) {
     return tmpArray;
 }
 
-const firstArray = [4, 8, 7, 9, 1, 5, 4, 6];
-const secondArray = [7, 6, 5, 2, 1, 3, 7, 4];
-console.log("Exo 9 : add array [" + firstArray + "] to [" + secondArray + "]");
-console.log(addArray(firstArray, secondArray));
+// console.log(addArray([4, 8, 7, 9, 1, 5, 4, 6], [7, 6, 5, 2, 1, 3, 7, 4]));
 
 /**
  * Exo 10
@@ -176,9 +162,7 @@ function removeDuplicate(tmpArray) {
     return newArray;
 }
 
-const data = [1, 1, 2, 3, 4, 5, 3, 5, 4, 7];
-console.log("Exo 10 : remove duplicate from " + data)
-console.log(removeDuplicate(data));
+// console.log(removeDuplicate([1, 1, 2, 3, 4, 5, 3, 5, 4, 7]));
 
 /**
  * Exo 11
@@ -192,9 +176,7 @@ function inverseWord(str) {
     return newStr;
 }
 
-let word = "espion";
-console.log("Exo 11 : inverseWord " + word)
-console.log(inverseWord(word));
+// console.log(inverseWord("espion"));
 
 /**
  * Exo 12
@@ -204,17 +186,7 @@ function isSecuredPassword(str) {
     return str.length >= 9 && (existsInArray("@", str) || existsInArray("!", str));
 }
 
-let pwd = "espion";
-console.log("Exo 12 : ");
-console.log(pwd + " is a secure password ? " + isSecuredPassword(pwd));
-pwd = "espion@";
-console.log(pwd + " is a secure password ? " + isSecuredPassword(pwd));
-pwd = "espionnage";
-console.log(pwd + " is a secure password ? " + isSecuredPassword(pwd));
-pwd = "espionn@ge";
-console.log(pwd + " is a secure password ? " + isSecuredPassword(pwd));
-pwd = "espionnage!";
-console.log(pwd + " is a secure password ? " + isSecuredPassword(pwd));
+console.log(isSecuredPassword("espionn@ge"));
 
 /**
  * Exo 13
@@ -229,9 +201,7 @@ function excerpt(str, from = 14) {
     return str.substring(0, from) + "...";
 }
 
-word = "Lorem quisque class vestibulum";
-console.log("Exo 13 : excerpt ")
-console.log(excerpt(word));
+// console.log(excerpt("Lorem quisque class vestibulum"));
 
 /**
  * Exo 14
@@ -257,9 +227,7 @@ function isPangram(str) {
     return tmpStr.length === 26;
 }
 
-word = "The quick brown fôx jumps over thé lazy dög !";
-console.log("Exo 14 : isPangram ")
-console.log(isPangram(word));
+// console.log(isPangram("The quick brown fôx jumps over thé lazy dög !"));
 
 /**
  * Exo 15
@@ -281,9 +249,8 @@ function getRange(anArray) {
     return max - min;
 }
 
-const anArray = [15, 78, 45, 96, 12, 32, 65, 78, 91];
-console.log("Exo 15 : getRange of [" + anArray + "]");
-console.log(getRange(anArray));
+// const anArray = [15, 78, 45, 96, 12, 32, 65, 78, 91];
+// console.log(getRange(anArray));
 
 /**
  * Exo 16
@@ -305,13 +272,16 @@ function isPalindrome(str) {
     // return false;
 }
 
-let palindrome = "ressasser"
-console.log("Exo 16 : isPalindrome ");
-console.log("isPalindrome for " + palindrome + " ? " + isPalindrome(palindrome));
-palindrome = "rêver"
-console.log("isPalindrome for " + palindrome + " ? " + isPalindrome(palindrome));
-palindrome = "toto"
-console.log("isPalindrome for " + palindrome + " ? " + isPalindrome(palindrome));
+/**
+ * 
+ * let palindrome = "ressasser"
+ *  console.log("isPalindrome for " + palindrome + " ? " + isPalindrome(palindrome));
+ *  palindrome = "rêver"
+ *  console.log("isPalindrome for " + palindrome + " ? " + isPalindrome(palindrome));
+ *  palindrome = "toto"
+ *  console.log("isPalindrome for " + palindrome + " ? " + isPalindrome(palindrome));
+ * 
+*/
 
 /**
  * Exo 17
@@ -328,128 +298,113 @@ function getScrabbleScore(str) {
     lettersByPoints.set("JX", 8);
     lettersByPoints.set("QZ", 10);
 
-    str = str.toUpperCase();
-
-    // Pour chaque lettre du mot "str"
+    
     for (const letter of str) {
-        // .keys() => récupère un tableau de TOUTES les clés de la map
-        for (const key of lettersByPoints.keys()) {
-            // Si la lettre existe dans la clé de la map, alors
-            if (existsInArray(letter, key)) {
-                // additionner le nombe de points de la lettre dans la variable "points"
-                points += lettersByPoints.get(key); // get the value
-                break;
+        lettersByPoints.forEach((value, key) => {
+            if (key.includes(letter.toUpperCase())) {
+                points += value;
             }
-        }
+        });
     }
 
-    // retourner "points"
     return points;
 }
-
-word = "lazy";
-console.log("Exo 17 : getScrabbleScore of " + word);
-console.log(getScrabbleScore(word));
+// console.log(getScrabbleScore("lazy"));
 
 /**
  * Exo 18
  */
 
-function changeSentences(sentences, modify = 'fe') {
-    let vowels = displayVowels();
-    // initialiser une variable "modifiedSentence"
-    let modifiedSentence = '';
-    // pour chaque lettre de "sentences"
-    for (const letter of sentences) {
-        // ajouter la lettre à "modifiedSentence"
-        modifiedSentence += letter;
-        // si la lettre est une voyelle, alors on ajoute "fe" et on ajoute de nouveau la lettre
-        if (existsInArray(letter, vowels)) {
-            modifiedSentence += modify + letter;
+function changeSentences(str) {
+    let modified = "";
+    const voyelle = ['a', 'e', 'i', 'o', 'u', 'y'];
+    for (let i = 0; i < str.length; i++) {
+        for (let j = 0; j < voyelle.length; j++) {
+            if (str[i] == voyelle[j]) {
+                modified += `${str[i]}fe`;
+            }
         }
+        modified += `${str[i]}`
     }
-    // retourner modifiedSentence
-    return modifiedSentence;
+    return modified
 }
 
-word = "chien";
-console.log("Exo 18 : changeSentences of " + word);
-console.log(changeSentences(word));
+// console.log(changeSentences("anticonstitutionnellement"));
 
 /**
  * Exo 19
  */
 
-function getAlphabet() {
-    return "abcdefghijklmnopqrstuvwxyz";
-}
+const ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-function encryptDecrypt(str, gap) {
-    str = str.toLowerCase();
-    // Initialiser une variable avec l'alphabet complet
-    const alphabet = getAlphabet();
-    const avoidedCharacters = " '.,;?!"
-    let encryptWord = '';
-    // pour chaque lettre du mot "str"
-    for (const letter of str) {
-        if (existsInArray(letter, avoidedCharacters)) {
-            encryptWord += letter;
-            continue;
+function encrypt(str, gap) {
+    let result = '';
+    let index_fix = 0;
+    const stringTLC = str.toLowerCase();
+    for (let i = 0; i < stringTLC.length; i++) {
+        if (stringTLC[i] == ' ') result += ' ';
+        for (let j = 0; j < ALPHABET.length-1; j++) {
+            if (stringTLC[i] == ALPHABET[j]) {
+                if (j+gap > ALPHABET.length) {
+                    index_fix = (j+gap)-ALPHABET.length;
+                    result += ALPHABET[index_fix];
+                } else result += ALPHABET[j+gap]
+            }
         }
-        // récupérer son équivalent avec le gap dans l'alphabet complet => /!\
-        const newIndex = (alphabet.indexOf(letter) + gap + 26) % 26;
-        // ajouter la nouvelle lettre dans encryptWord
-        encryptWord += alphabet[newIndex];
     }
-
-    // retourner encryptWord
-    return encryptWord;
+    return result;
 }
 
-word = "Le chat est noir";
-console.log("Exo 19 : encrypt of " + word);
-console.log(encryptDecrypt(word, 5));
+// console.log(encrypt("chat", 3));
+
+function decrypt(str, gap) {
+    let unresult = '';
+    let index_fix = 0;
+    const cypherTLC = str.toLowerCase();
+    for (let i = 0; i < cypherTLC.length; i++) {
+        if (cypherTLC[i] == ' ') unresult += ' ';
+        for (let j = 0; j <= ALPHABET.length-1; j++) {
+            if (cypherTLC[i] == ALPHABET[j]) {
+                if (j-gap < 0) {
+                    index_fix = (j-gap)+ALPHABET.length;
+                    unresult += ALPHABET[index_fix];
+                } else unresult += ALPHABET[j-gap]
+            }
+        }
+    }
+    return unresult;
+}
+
+// console.log(decrypt("fkdw", 3));
 
 /**
  * Exo 20
  */
 
 function calculateHypotenuse(h, w) {
-    return Math.sqrt(Math.pow(h, 2) + Math.pow(w, 2));
+    return Math.sqrt(h*h + w*w)
 }
 
-const h = 5;
-const w = 7;
-console.log("Exo 20 : calculateHypotenuse with h : " + h + " and w : " + w);
-console.log(calculateHypotenuse(h, w));
+// console.log(calculateHypotenuse(67,42))
 
 /**
  * Exo 21
  */
 
 function getGain(nbSubscribers) {
-    let gain = nbSubscribers * 4.99;
-    let percent = 8;
+    let total = nbSubscribers*4.99;
     if (nbSubscribers < 100) {
-        percent = 40;
+        console.log(`Gain streamer : ${total*0.6} ; Gain site : ${total*0.4}`)
     } else if (nbSubscribers < 500) {
-        percent = 25;
+        console.log(`Gain streamer : ${total*0.75} ; Gain site : ${total*0.25}`)
     } else if (nbSubscribers < 1000) {
-        percent = 15;
-    }
-
-    const streamerGain = gain * ((100 - percent) / 100);
-    const websiteGain = gain * (percent / 100);
-
-    return "Le streamer gagne " + streamerGain.toFixed(2) +
-        " ; le site gagne " + websiteGain.toFixed(2);
+        console.log(`Gain streamer : ${total*0.85} ; Gain site : ${total*0.15}`)
+    } else console.log(`Gain streamer : ${total*0.95} ; Gain site : ${total*0.05}`)
+    return total;
 }
 
-console.log("Exo 21 : getGain");
-console.log(getGain(42));
-console.log(getGain(142));
-console.log(getGain(542));
-console.log(getGain(1542));
+// console.log(getGain(999))
 
 /**
  * Exo 22
@@ -457,98 +412,144 @@ console.log(getGain(1542));
 
 function displayHoursByTime(time) {
     let hours = Math.floor(time / 3600);
-    let minutes = Math.floor((time % 3600) / 60);
+    let minutes = Math.floor((time%3600)/60);
 
     if (hours < 10) {
-        hours = "0" + hours;
+        hours = `0${hours}`;
     }
-
     if (minutes < 10) {
-        minutes = "0" + minutes;
+        minutes = `0${minutes}`;
     }
 
-    return hours + "h" + minutes;
+    return `${hours}h${minutes}`;
 }
 
-console.log("Exo 22 : displayHoursByTime");
-console.log(displayHoursByTime(12780));
+// console.log(displayHoursByTime(3599));
 
 /**
  * Exo 23
  */
 
 function getLettersBy(str) {
-    const vowels = displayVowels();
-    let vowelsCount = 0;
-    let consonantCount = 0;
-    const avoidedCharacters = " '.,;?!"
-    str = sanitizeString(str)
-        .toLowerCase();
-
-    for (const letter of str) {
-        if (!existsInArray(letter, avoidedCharacters)) {
-            if (existsInArray(letter, vowels)) {
-                vowelsCount++;
-            } else {
-                consonantCount++;
+    let voy = "aeiouy"
+    let voyNumb = 0;
+    let spcNumb = 0;
+    for (const letter in str) {
+        let actualLetter = str[letter].normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        for (let i = 0; i < voy.length; i++) {
+            if (actualLetter == voy[i]) {
+                voyNumb++;
             }
         }
+        if (actualLetter == ' ') {
+            spcNumb++;
+        }
     }
-
-    return 'Il y a ' + vowelsCount + ' voyelles et ' + consonantCount + ' consonnes dans la chaine de caractères "' + str + '"';
+    return `Il y a ${voyNumb} voyelles et ${str.length-voyNumb-spcNumb} consonnes dans la chaîne de caractères "${str}"`
 }
 
-word = "Dobry wieczór, cristaline";
-console.log("Exo 23 : getLettersBy for " + word);
-console.log(getLettersBy(word));
+// console.log(getLettersBy("Dobry wieczór"))
 
 /**
  * Exo 24
  */
 
-function randomBetween(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-}
-
 function generateLetters() {
-    const letters = [];
-    const vowels = displayVowels();
-    const consonants = 'bcdfghjklmnpqrstvwxz';
+    let tab = [];
+    let consTab = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'];
+    let voyTab = ['A', 'E', 'I', 'O', 'U', 'Y'];
 
-    while (letters.length !== 9) {
-        const letter = prompt("Consonne ou voyelle ?");
-        if (letter !== 'C' && letter !== 'V') {
-            alert("Consonne ou voyelle est demandée !");
-            continue;
-        }
-
-        let aLetter = vowels[randomBetween(0, vowels.length - 1)];
-        if (letter === 'C') {
-            aLetter = consonants[randomBetween(0, consonants.length - 1)];
-        }
-
-        alert(aLetter + " a été généré !");
-        letters.push(aLetter);
+    while (tab !== 9) {
+        let askLetter= rlS.question("Consonne ou voyelle ? (C/V): ");
+        if (askLetter.toUpperCase() == 'C') {
+            tab.push(consTab[Math.floor(Math.random() * consTab.length)]);
+        } else if (askLetter.toUpperCase() == 'V') {
+            tab.push(voyTab[Math.floor(Math.random() * voyTab.length)])
+        } else continue;
     }
 
-    return letters;
+    return tab;
 }
 
-console.log("Exo 24 : generateLetters");
 // console.log(generateLetters());
+
+/**
+ * Exo 25
+ */
+
+function mastermind() {
+    let tabToFind = [];
+    let tabGuess = [];
+    let tabDisplay = [];
+
+    for (let i = 0; i < 4; i++) {
+        tabToFind.push(parseInt(Math.floor(Math.random() * 6)));
+    }
+
+    for (let i = 0; i < 9; i++) {
+        let win = true;
+        for (let j = 0; j < 4; j++) {
+            value = rlS.question("Saisissez un chiffre de 1 à 5 : ");
+            tabGuess.push(parseInt(value));
+        }
+        for (let j = 0; j < 4; j++) {
+            if (tabToFind[j] == tabGuess[j]) {
+                tabDisplay.push(tabToFind[j]);
+            } else {
+                tabDisplay.push('x');
+                win = false;
+            }
+        }
+        if (win == true) {
+            console.log(`Gagné ! ${i+1} tentatives nécessaires. La réponse était ${tabToFind}`);
+            return 'OK';
+        }
+        console.log(`Résultat : ${tabDisplay}`);
+        tabDisplay = [];
+        tabGuess = [];
+    }
+    console.log(`Perdu... La réponse était ${tabToFind}.`);
+    return false;
+
+}
+
+// console.log(mastermind())
 
 /**
  * Exo 26
  */
 
+function getTimeTraveling(km) {
+    const speed = [
+        {
+            way: "Walking",
+            kmh: 5
+        },
+        {
+            way: "Biking",
+            kmh: 20
+        },
+        {
+            way: "Driving Classic",
+            kmh: 90
+        },
+        {
+            way: "Driving Highway",
+            kmh: 130
+        }
+    ]
 
+    timewalk = displayHoursByTime((km/speed[0].kmh)*3600);
+    timebike = displayHoursByTime((km/speed[1].kmh)*3600);
+    timedclas = displayHoursByTime((km/speed[2].kmh)*3600);
+    timedhigh = displayHoursByTime((km/speed[3].kmh)*3600);
+    
+    return `A pied vous mettrez ${timewalk} pour faire ${km}km
+En vélo vous mettrez ${timebike} pour faire ${km}km
+En voiture sur route vous mettrez ${timedclas} pour faire ${km}km
+En voiture sur autoroute vous mettrez ${timedhigh} pour faire ${km}km`
+}
 
+// console.log(getTimeTraveling(100));
 
-
-
-
-
-
-
-
-
+// END
