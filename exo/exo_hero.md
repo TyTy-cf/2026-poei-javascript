@@ -51,4 +51,13 @@
     - maxDamage : 2.1 * primary stats
 - Les dégâts du mage réduisent la défense de 3
 
+### Faire la méthode de combat
 
+- Créer une fonction "fight" dans le Hero
+- Elle prend en paramètre un autre Hero, le hero qui se fait attaquer
+- Les dégâts se calculent de cette manière :
+  - Déterminer le résultat aléatoire compris entre minDamage et maxDamage
+  - Déterminer si c'est un coup critique (faire un random de 0 à 100, si on l'on est inférieure ou égal au taux de crit, c'est un crit)
+  - Si c'est un crit, alors on ajoute le coefficient multiplicateur de crit du héro
+- La défense est une réduction en %, par exemple un héro qui a 3 de défense, subit : (100 - defense * 2) / 100 => 0.94 ; coefficient à multiplier par les dégâts
+- Une fois les dégâts subient calculés, on les soustrait aux points de vie du héro défenseur
