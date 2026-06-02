@@ -355,15 +355,66 @@ console.log(getScrabbleScore(word));
  * Exo 18
  */
 
-function changeSentences(sentences) {
+function changeSentences(sentences, modify = 'fe') {
+    let vowels = displayVowels();
     // initialiser une variable "modifiedSentence"
+    let modifiedSentence = '';
     // pour chaque lettre de "sentences"
-    // ajouter la lettre à "modifiedSentence"
-    // si la lettre est une voyelle, alors on ajoute "fe" et on ajoute de nouveau la lettre
-    // finpour
+    for (const letter of sentences) {
+        // ajouter la lettre à "modifiedSentence"
+        modifiedSentence += letter;
+        // si la lettre est une voyelle, alors on ajoute "fe" et on ajoute de nouveau la lettre
+        if (existsInArray(letter, vowels)) {
+            modifiedSentence += modify + letter;
+        }
+    }
     // retourner modifiedSentence
+    return modifiedSentence;
 }
 
-word = "chafeat";
+word = "chien";
 console.log("Exo 18 : changeSentences of " + word);
 console.log(changeSentences(word));
+
+/**
+ * Exo 19
+ */
+
+function encryptDecrypt(str, gap) {
+    str = str.toLowerCase();
+    // Initialiser une variable avec l'alphabet complet
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const avoidedCharacters = " '.,;?!"
+    let encryptWord = '';
+    // pour chaque lettre du mot "str"
+    for (const letter of str) {
+        if (existsInArray(letter, avoidedCharacters)) {
+            encryptWord += letter;
+            continue;
+        }
+        // récupérer son équivalent avec le gap dans l'alphabet complet => /!\
+        const newIndex = (alphabet.indexOf(letter) + gap + 26) % 26;
+        // ajouter la nouvelle lettre dans encryptWord
+        encryptWord += alphabet[newIndex];
+    }
+
+    // retourner encryptWord
+    return encryptWord;
+}
+
+word = "Le chat est noir";
+console.log("Exo 19 : encrypt of " + word);
+console.log(encryptDecrypt(word, 5));
+
+/**
+ * Exo 20
+ */
+
+function calculateHypotenuse(h, w) {
+    return Math.sqrt(Math.pow(h, 2) + Math.pow(w, 2));
+}
+
+const h = 5;
+const w = 7;
+console.log("Exo 20 : calculateHypotenuse with h : " + h + " and w : " + w);
+console.log(calculateHypotenuse(h, w));
