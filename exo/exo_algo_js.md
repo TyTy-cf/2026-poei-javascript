@@ -459,8 +459,8 @@ Deux mots sont des anagrammes s'ils possèdent les mêmes lettres, mais pas forc
 
 Exemple :
 ```
-- Paramètres "str1", "mot"
-- Paramètres "str2", "tom"
+- Paramètres "str1", "soigneur"
+- Paramètres "str2", "guérison"
 - Retour : true
 ```
 

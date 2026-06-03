@@ -538,11 +538,49 @@ console.log("Exo 24 : generateLetters");
 // console.log(generateLetters());
 
 /**
- * Exo 26
+ * Exo 27
  */
 
+function isAnagram(str1, str2) {
+    const mapStr1 = getMapByStr(sanitizeString(str1));
+    const mapStr2 = getMapByStr(sanitizeString(str2));
 
+    for (const key of mapStr1.keys()) {
+        if (!mapStr2.has(key)) {
+            return false;
+        }
 
+        if (mapStr1.get(key) !== mapStr2.get(key)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function getMapByStr(str) {
+    const mapStr = new Map();
+    const avoidedCharacters = " '.,;?!"
+
+    for (const letter of str) {
+        if (existsInArray(letter, avoidedCharacters)) {
+            continue;
+        }
+
+        let currentValue = mapStr.get(letter);
+
+        if (currentValue === undefined) {
+            currentValue = 0;
+        }
+
+        mapStr.set(letter, currentValue + 1);
+    }
+
+    return mapStr;
+}
+
+console.log("Exo 27 : isAnagram");
+console.log(isAnagram("soigneur", "guérison"));
 
 
 
