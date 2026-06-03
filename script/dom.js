@@ -3,6 +3,7 @@ window.addEventListener('load', () => {
     exo1();
     exo2();
     exo3();
+    exo4();
 });
 
 function exo1() {
@@ -27,8 +28,29 @@ function exo3() {
 }
 
 function exo4() {
+    const lines = document.querySelectorAll('tbody tr');
+    for (const line of lines) {
+        const rankTd = line.querySelector('td:nth-child(2)');
+        const averageTd = line.querySelector('td:nth-child(3)');
 
+        if (rankTd && averageTd) {
+            const ranks = rankTd.textContent.split(',');
+            let sum = 0;
+            for (const rank of ranks) {
+                sum += parseInt(rank.replace(' ', ''));
+            }
+
+            averageTd.textContent = (sum / ranks.length).toString();
+        }
+    }
 }
+
+
+
+
+
+
+
 
 
 
