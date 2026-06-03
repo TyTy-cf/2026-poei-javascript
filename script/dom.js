@@ -36,6 +36,7 @@ function exo4() {
         if (rankTd && averageTd) {
             const ranks = rankTd.textContent.split(',');
             let sum = 0;
+
             for (const rank of ranks) {
                 sum += parseInt(rank.replace(' ', ''));
             }
