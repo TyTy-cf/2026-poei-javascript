@@ -33,7 +33,16 @@
 - Dorénavant le clic sur le bouton "Click me !" doit afficher la table, si elle est cachée ou la cacher, si elle est visible
 
 
-### 6. 
+### 6.
+
+
+Sur la page "form.html", faire en sorte que le clic sur le bouton "oeil" affiche le mot de passe ou le masque
+
+Bonus : pour un changement d'icône adéquat...
+
+
+
+### 7. 
 
 
 - Faire un lien depuis la page "index.html" qui mène à la page "form.html"
