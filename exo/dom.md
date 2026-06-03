@@ -40,7 +40,7 @@
 - Cette page doit avoir un formulaire avec les champs suivants :
   - input: text avec le nom "search"
   - input: text avec le nom "number"
-- Ajouter un évènement sur chacun des input qui affiche le contenu saisie par l'utilisateur dans un <p>, situé en dessous des input
+- Ajouter un évènement sur chacun des input qui affiche le contenu saisie par l'utilisateur dans un `<p>`, situé en dessous des input
 - L'utilisateur peut aussi valider le form, s'il le fait on ouvre une alerte JS affichant les informations saisies
 
 

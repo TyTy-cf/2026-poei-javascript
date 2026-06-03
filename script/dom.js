@@ -2,6 +2,7 @@
 window.addEventListener('load', () => {
     exo1();
     exo2();
+    exo3();
 });
 
 function exo1() {
@@ -17,3 +18,23 @@ function exo2() {
         td.classList.add('ranks');
     }
 }
+
+function exo3() {
+    const title = document.querySelector('h1');
+    if (title) {
+        title.innerText = 'TP Javascript POEI';
+    }
+}
+
+function exo4() {
+
+}
+
+
+
+
+
+
+
+
+
