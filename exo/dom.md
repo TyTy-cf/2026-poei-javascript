@@ -33,6 +33,14 @@
 - Dorénavant le clic sur le bouton "Click me !" doit afficher la table, si elle est cachée ou la cacher, si elle est visible
 
 
+### 6. 
 
+
+- Faire un lien depuis la page "index.html" qui mène à la page "form.html"
+- Cette page doit avoir un formulaire avec les champs suivants :
+  - input: text avec le nom "search"
+  - input: text avec le nom "number"
+- Ajouter un évènement sur chacun des input qui affiche le contenu saisie par l'utilisateur dans un <p>, situé en dessous des input
+- L'utilisateur peut aussi valider le form, s'il le fait on ouvre une alerte JS affichant les informations saisies
 
 
