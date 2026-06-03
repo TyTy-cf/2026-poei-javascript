@@ -8,6 +8,7 @@ window.addEventListener('load', () => {
         '.table-student',
         'button.btn.btn-primary',
     );
+    hideShowPassword();
 });
 
 function exo1() {
@@ -65,7 +66,21 @@ function toggleElement(toggledElement, actionElement, isDefaultHidden = true) {
     }
 }
 
-
+function hideShowPassword() {
+    const inputs = document.querySelectorAll('input[type="password"]');
+    for (const input of inputs) {
+        const button = input.nextElementSibling; // Récupère l'élément frère
+        if (button) {
+            button.addEventListener('click', () => {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                } else {
+                    input.type = 'password';
+                }
+            })
+        }
+    }
+}
 
 
 
