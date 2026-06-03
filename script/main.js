@@ -573,14 +573,90 @@ function getMapByStr(str) {
             currentValue = 0;
         }
 
-        mapStr.set(letter, currentValue + 1);
+        mapStr.set(letter, ++currentValue);
     }
 
     return mapStr;
 }
 
 console.log("Exo 27 : isAnagram");
-console.log(isAnagram("soigneur", "guérison"));
+console.log(isAnagram("soigneur", "guérisons"));
+
+/**
+ * Exo 28
+ */
+
+function getLongestWord(str) {
+    const splitted = str.split(" ");
+    let maxWord = '';
+
+    for (const word of splitted) {
+        if (word.length > maxWord.length) {
+            maxWord = word;
+        }
+    }
+
+    return maxWord + " (" + maxWord.length + ")";
+}
+
+function getLongestWordWithoutSplit(str) {
+    let maxWord = '';
+    let cpt = 0;
+    let tmpWord = '';
+
+    for (const letter of str) {
+        if (letter !== ' ') {
+            tmpWord += letter;
+            cpt++;
+        } else {
+            tmpWord = '';
+            cpt = 0;
+        }
+
+        if (maxWord.length < cpt) {
+            maxWord = tmpWord;
+        }
+    }
+
+    return maxWord + " (" + maxWord.length + ")";
+}
+
+word = "Dobry wieczór";
+console.log("Exo 28 : getLongestWord for " + word);
+console.log(getLongestWordWithoutSplit(word));
+
+/**
+ * Exo 29
+ */
+
+function compressed(str) {
+    str = sanitizeString(str);
+    const avoidedCharacters = " '.,;?!";
+    const mapLetters = new Map();
+
+    for (const letter of str) {
+        if (existsInArray(letter, avoidedCharacters)) continue;
+
+        let nbOccurrence = mapLetters.get(letter);
+
+        if (nbOccurrence === undefined) {
+            nbOccurrence = 0;
+        }
+
+        mapLetters.set(letter, ++nbOccurrence);
+    }
+
+    let returnStr = '';
+    mapLetters.forEach((qty, letter) => {
+        returnStr += letter + qty;
+    });
+
+    return returnStr;
+}
+
+word = "aaabbc";
+console.log("Exo 29 : compressed for " + word);
+console.log(compressed(word));
 
 
 
