@@ -55,12 +55,24 @@ Bonus : pour un changement d'icône adéquat...
 
 ### 8.
 
+
 - Objectif : simuler un lancé de dé, et afficher l'image du bon dé à l'écran
 - Voici la formule pour obtenir un résultat aléatoire entre 1 et 6 : `Math.floor(Math.random() * 6) + 1`
 - Vous intégrerez l'image du dé correspondant au lancé dans la div ayant la classe "dice"
 
 
+### 9.
 
+
+- Objectif : créer un bouton, qui permet de faire un lancé de dé au clic
+- Le résultat s'affichera dans la div ayant la classe "dice"
+- Si la div a déjà du contenu, il sera écrasé
+
+
+### 10.
+
+
+- Simuler 5 lancés de dés, au chargement et au lancé de dé 
 
 
 
