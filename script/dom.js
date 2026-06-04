@@ -50,17 +50,33 @@ function toggleElement() {
     }
 }
 
-function logInput() {
-    const inputBox = document.querySelectorAll('input');
-    if (inputBox) {
-        const log = document.querySelector('p');
-        if (log) {
-            inputBox.addEventListener('input', () => {
-                log.textContent = inputBox.innerText;
+function hideShowPassword() {
+    const inputs = document.querySelectorAll('input[type="password"]');
+    for (const input of inputs) {
+        const button = input.nextElementSibling; // Récupère l'élément frère
+        if (button) {
+            const icon = button.querySelector('button>i');
+            button.addEventListener('click', () => {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                } else {
+                    input.type = 'password';
+                }
+                if (icon) {
+                    icon.classList.toggle('fa-eye-slash');
+                }
             });
         }
     }
 }
+
+function submitForm() {
+    const button = document.querySelector('button[type="submit"]');
+    button.addEventListener('click', () => {
+        alert(`Password : ${password} | Confirm Password : ${confirm-password}`);
+    })
+}
+
 
 window.addEventListener('load', () => {
     boldStudents();
@@ -68,5 +84,5 @@ window.addEventListener('load', () => {
     changeTitle();
     getAvg();
     toggleElement();
-    logInput();
+    hideShowPassword();
 });
