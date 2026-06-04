@@ -75,15 +75,43 @@ Bonus : pour un changement d'icône adéquat...
 - Simuler 5 lancés de dés, au chargement et au lancé de dé 
 
 
+### 11.
 
 
+- Objectif : afficher les images des Pokémons des numéros 1 à 151
+- Il faudra créer une balise HTML de type 'div' qui contiendra une balise HTML de type 'img'
+- On doit avoir cette structure de balise :
+
+<div class="col-4">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/681.png">
+</div> 
 
 
+- Chaque balise ayant 'col-4' doit être insérée dans la balise de classe 'row block-pokemons', existant sur la page index.html
+
+Astuce :
+- Les images ont toutes le même nom, la seule chose qui change est le numéro du pokémon en fin d'URL : https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/681.png
+- Il faut donc le remplacer la valeur de 'i' dans une itération de boucle...
 
 
+12. 
+
+ 
+- Faire un form de recherche
+- Le form aura un "input" type "number" qui permettra de filtrer et d'afficher seulement l'image du pokémon corespondant
 
 
+13. 
 
 
+- Prévoir pour ajouter plusieurs boutons qui permettent de gérer plusieurs Pokédex, par exemple 
+  - Gen 1 : 1 à 151
+  - Gen 2 : 152 à 251
+  - Gen 3 : 252 à 386
+  - Gen 4 : 387 à 493
+  - Gen 5  : 494 à 694
+  - Gen 6 : 695 à 721
+  - Gen 7 : 721 à 809
+  - Gen 8 : 810 à 905
 
-### 9.
+- En cliquant sur le bouton on affiche le pokédex adéquat
