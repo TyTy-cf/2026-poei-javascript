@@ -66,31 +66,25 @@ function toggleElement(toggledElement, actionElement, isDefaultHidden = true) {
     }
 }
 
-
-
-
 function hideShowPassword() {
     const inputs = document.querySelectorAll('input[type="password"]');
     for (const input of inputs) {
         const button = input.nextElementSibling; // Récupère l'élément frère
-        const icon = button.querySelector("i");
         if (button) {
+            const icon = button.querySelector('i');
             button.addEventListener('click', () => {
-                if (icon) {
-                    icon.classList.toggle("fa-eye-slash");
-                }
                 if (input.type === 'password') {
                     input.type = 'text';
                 } else {
                     input.type = 'password';
-
+                }
+                if (icon) {
+                    icon.classList.toggle('fa-eye-slash');
                 }
             })
         }
     }
 }
-
-
 
 
 

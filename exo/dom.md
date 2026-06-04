@@ -50,6 +50,28 @@ Bonus : pour un changement d'icône adéquat...
   - input: text avec le nom "search"
   - input: text avec le nom "number"
 - Ajouter un évènement sur chacun des input qui affiche le contenu saisie par l'utilisateur dans un `<p>`, situé en dessous des input
-- L'utilisateur peut aussi valider le form, s'il le  fait on ouvre une alerte JS affichant les informations saisies
+- L'utilisateur peut aussi valider le form, s'il le fait on ouvre une alerte JS affichant les informations saisies
 
 
+### 8.
+
+- Objectif : simuler un lancé de dé, et afficher l'image du bon dé à l'écran
+- Voici la formule pour obtenir un résultat aléatoire entre 1 et 6 : `Math.floor(Math.random() * 6) + 1`
+- Vous intégrerez l'image du dé correspondant au lancé dans la div ayant la classe "dice"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### 9.
