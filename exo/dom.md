@@ -115,3 +115,11 @@ Astuce :
   - Gen 8 : 810 à 905
 
 - En cliquant sur le bouton on affiche le pokédex adéquat
+
+
+ ### 14.
+
+
+- Revenir aux dés...
+- Faire en sorte que les dés soient cliquables, si c'est le cas, faites les ressortir visuellement
+- Un dé "cliqué" est un dès qui ne doit pas être relancé
