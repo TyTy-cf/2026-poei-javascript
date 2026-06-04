@@ -71,11 +71,15 @@ function hideShowPassword() {
     for (const input of inputs) {
         const button = input.nextElementSibling; // Récupère l'élément frère
         if (button) {
+            const icon = button.querySelector('i');
             button.addEventListener('click', () => {
                 if (input.type === 'password') {
                     input.type = 'text';
                 } else {
                     input.type = 'password';
+                }
+                if (icon) {
+                    icon.classList.toggle('fa-eye-slash');
                 }
             })
         }
