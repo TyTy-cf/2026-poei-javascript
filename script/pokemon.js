@@ -68,39 +68,37 @@ function search(value) {
         const pokemon_img = document.createElement('img');
 
         pokemon_div_new.classList.add('col-12');
-        pokemon_img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${parseInt(value)}.png`;
+        pokemon_img.src = urlById(value);
 
-        form.after(pokemon_div_new);
+        pokemon_img.addEventListener('mouseover', () => {
+            pokemon_img.src = urlById(value, true);
+        })
+
+        pokemon_img.addEventListener('mouseout', () => {
+            pokemon_img.src = urlById(value);
+        })
+
+
+        main.appendChild(pokemon_div_new);
         pokemon_div_new.appendChild(pokemon_img);
         if (title) {
-            if (value < 152) {
-                title.innerText = "1st Gen Pokemon";
-            } else if (value < 252) {
-                title.innerText = "2nd Gen Pokemon";
-            } else if (value < 387) {
-                title.innerText = "3rd Gen Pokemon";
-            } else if (value < 494) {
-                title.innerText = "4th Gen Pokemon";
-            } else if (value < 650) {
-                title.innerText = "5th Gen Pokemon";
-            } else if (value < 722) {
-                title.innerText = "6th Gen Pokemon";
-            } else if (value < 810) {
-                title.innerText = "7th Gen Pokemon";
-            } else if (value < 906 ) {
-                title.innerText = "8th Gen Pokemon";
-            } else {
-                title.innerText = "9th Gen Pokemon";
-            }
+            if (value < 152) title.innerText = "1st Gen Pokemon";
+            else if (value < 252) title.innerText = "2nd Gen Pokemon";
+            else if (value < 387) title.innerText = "3rd Gen Pokemon";
+            else if (value < 494) title.innerText = "4th Gen Pokemon";
+            else if (value < 650) title.innerText = "5th Gen Pokemon";
+            else if (value < 722) title.innerText = "6th Gen Pokemon";
+            else if (value < 810) title.innerText = "7th Gen Pokemon";
+            else if (value < 906 ) title.innerText = "8th Gen Pokemon";
+            else title.innerText = "9th Gen Pokemon";
         }
     }
 }
 
 function clearPokemon() {
-    console.log('CC')
     const main = document.querySelector('.block-pokemons');
     if (main) {
-        const pokemon_div = document.querySelectorAll('.col-4')
+        const pokemon_div = document.querySelectorAll('.col-12')
         for (const pokemon of pokemon_div) {
             pokemon.remove();
         }
@@ -117,8 +115,16 @@ function generatePokemon(min, max) {
             const pokemon_img = document.createElement('img');
             const pokemon_name = document.createElement('p');
 
-            pokemon_div.classList.add('col-4');
-            pokemon_img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`;
+            pokemon_div.classList.add('col-xl-1', 'col-lg-2', 'col-md-4', 'col-sm-6', 'col-12');
+            pokemon_img.src = urlById(i);
+
+            pokemon_img.addEventListener('mouseover', () => {
+                pokemon_img.src = urlById(i, true);
+            })
+
+            pokemon_img.addEventListener('mouseout', () => {
+                pokemon_img.src = urlById(i);
+            })
 
             main.appendChild(pokemon_div);
             pokemon_div.appendChild(pokemon_img);
@@ -138,9 +144,16 @@ function generatePokemon(min, max) {
     }
 }
 
+function urlById(id, isShiny = false) {
+    if (isShiny) {
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${id}.png`
+    }
+
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+}
+
 window.addEventListener('load', () => {
     const main = document.querySelector('div.row.block-pokemons');
-    const formSearch = document.querySelector('.btn-search');
     const inputBox = document.querySelector('input');
     const left = document.querySelector('.left');
     const right = document.querySelector('.right');
@@ -148,9 +161,12 @@ window.addEventListener('load', () => {
 
     generatePokemon(1, 151);
 
-    if (formSearch && inputBox) {
-        formSearch.addEventListener('click', () => {
-            search(inputBox.value);
+    if (inputBox) {
+        inputBox.addEventListener('input', () => {
+            if (!inputBox.value) {
+                clearPokemon();
+                generatePokemon(1, 151);
+            } else search(inputBox.value);
         })
     }
 

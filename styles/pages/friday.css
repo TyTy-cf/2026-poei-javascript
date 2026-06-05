@@ -1,0 +1,14 @@
+body {
+    background-color: #1b1b1b;
+}
+
+.pfp {
+    height: 128px;
+    border-radius: 100%;
+}
+
+.card-profile {
+    border: 2px solid white;
+    padding: 1rem;
+    border-radius: 30px;
+}

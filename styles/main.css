@@ -1,4 +1,10 @@
 @import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "./pages/home.css";
+@import "./pages/friday.css";
 @import "./pages/pokemon.css";
+@import './pages/chess.css';
+
+h1, label, span, p {
+    color: #fdfdfd;
+}
