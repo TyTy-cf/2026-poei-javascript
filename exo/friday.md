@@ -39,7 +39,7 @@
   - Ajouter un évènement "click" sur le bouton "Modifier", qui permet de :
     - Afficher le form de modification
     - Si l'utilisateur reclique sur le bouton "Modifier", alors le formulaire est de nouveau masqué
-    - Les "input" présent dans le formulaire doivent avir les mêmes valeurs que celles par défaut du profil utilisateur, elles sont visibles dans la balise "section"
+    - Les "input" présent dans le formulaire doivent avoir les mêmes valeurs que celles par défaut du profil utilisateur, elles sont visibles dans la balise "section"
     - Si l'utilisateur valide le formulaire, il faut interrompre le comportement par défaut du formulaire et venir modifier les valeurs des "noms" et "fonctions" définies dans le form, directement dans l'HTML
 
 
