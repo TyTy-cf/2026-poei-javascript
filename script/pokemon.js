@@ -121,7 +121,11 @@ function getPokemonContainer(number) {
         })
         .then((jsonContent) => {
             if (jsonContent) {
-                p.textContent = toTitleCase(jsonContent.name);
+                p.innerHTML = toTitleCase(jsonContent.name);
+                p.innerHTML += '<br>'
+                for (const type of jsonContent.types) {
+                    p.innerHTML += toTitleCase(type.type.name) + " "
+                }
                 div.appendChild(image);
                 div.appendChild(p);
             }
