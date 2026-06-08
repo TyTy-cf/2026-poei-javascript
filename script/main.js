@@ -268,43 +268,62 @@ function isPalindrome(str) {
  * Exo 17
  */
 
-function getScrabbleScore(str) {
-    const pointsScrabble = {
-        'a': 1,
-        'b': 3,
-        'c': 3,
-        'd': 2,
-        'e': 1,
-        'f': 4,
-        'g': 2,
-        'h': 4,
-        'i': 1,
-        'j': 8,
-        'k': 5,
-        'l': 1,
-        'm': 3,
-        'n': 1,
-        'o': 1,
-        'p': 3,
-        'q': 10,
-        'r': 1,
-        's': 1,
-        't': 1,
-        'u': 1,
-        'v': 4,
-        'w': 4,
-        'x': 8,
-        'y': 4,
-        'z': 10
-    };
+// function getScrabbleScore(str) {
+//     const pointsScrabble = {
+//         'a': 1,
+//         'b': 3,
+//         'c': 3,
+//         'd': 2,
+//         'e': 1,
+//         'f': 4,
+//         'g': 2,
+//         'h': 4,
+//         'i': 1,
+//         'j': 8,
+//         'k': 5,
+//         'l': 1,
+//         'm': 3,
+//         'n': 1,
+//         'o': 1,
+//         'p': 3,
+//         'q': 10,
+//         'r': 1,
+//         's': 1,
+//         't': 1,
+//         'u': 1,
+//         'v': 4,
+//         'w': 4,
+//         'x': 8,
+//         'y': 4,
+//         'z': 10
+//     };
+//
+//     let score = 0;
+//
+//     for (let i = 0; i < str.length; i++) {
+//         score += pointsScrabble[str.charAt(i)];
+//     }
+//
+//     return score;
+// }
 
-    let score = 0;
+function getScrabbleScore(str) {
+    let points = 0;
+    const lettersByPoints = new Map();
+    lettersByPoints.set("AEIOULNRST", 1);
+    lettersByPoints.set("DG", 2);
+    lettersByPoints.set("BCMP", 3);
+    lettersByPoints.set("FHVWY", 4);
+    lettersByPoints.set("K", 5);
+    lettersByPoints.set("JX", 8);
+    lettersByPoints.set("QZ", 10);
 
     for (let i = 0; i < str.length; i++) {
-        score += pointsScrabble[str.charAt(i)];
+        for (const letters of lettersByPoints.keys()) {
+            letters.includes(str[i].toLocaleUpperCase()) && (points += lettersByPoints.get(letters));
+        }
     }
-
-    return score;
+    return points;
 }
 
 // console.log(getScrabbleScore("lazy"));
@@ -424,8 +443,7 @@ function getLettersBy(str) {
  * Exo 25
  */
 
-function generateLetters()
-{
+function generateLetters() {
     const VOWELS = ["A", "E", "I", "O", "U", "Y"];
 
     const CONSONANTS = [
@@ -440,7 +458,7 @@ function generateLetters()
 
     for (let i = 0; i < 9; i++) {
         playerChoice = readlineSync.keyIn("Consonant or Vowel ? (C/V) :", {limit: 'cv'});
-        (playerChoice === 'c') ? letters.push(CONSONANTS[Math.floor(Math.random()*CONSONANTS.length)]) : letters.push(VOWELS[Math.floor(Math.random()*VOWELS.length)])
+        (playerChoice === 'c') ? letters.push(CONSONANTS[Math.floor(Math.random() * CONSONANTS.length)]) : letters.push(VOWELS[Math.floor(Math.random() * VOWELS.length)])
     }
 
     return letters;
@@ -477,8 +495,7 @@ function mastermind() {
         }
         console.log("Résultat : " + computerAnswer);
 
-        if (JSON.stringify(playerGuess) === JSON.stringify(solution))
-        {
+        if (JSON.stringify(playerGuess) === JSON.stringify(solution)) {
             console.log("Gagné")
             return true;
         }
@@ -527,8 +544,7 @@ function getTravelTime(km) {
 
 function isAnagram(str1, str2) {
 
-    if(str1.length !== str2.length)
-    {
+    if (str1.length !== str2.length) {
         return false;
     }
 
@@ -553,8 +569,7 @@ function isAnagram(str1, str2) {
  * Exo 28
  */
 
-function getLonguestWord(str)
-{
+function getLonguestWord(str) {
     let wordArray = str.split(' ');
     let currentLonguest = "";
 
@@ -571,8 +586,7 @@ function getLonguestWord(str)
  * Exo 29
  */
 
-function compressed(str)
-{
+function compressed(str) {
     let compressedStr = "";
     let currentLetter = '';
     let currentLetterCount = 0;
