@@ -1,5 +1,3 @@
-import readlineSync from 'readline-sync';
-
 /**
  * Exo 1
  */
