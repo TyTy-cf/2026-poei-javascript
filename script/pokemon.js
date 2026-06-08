@@ -30,8 +30,14 @@ window.addEventListener('load', () => {
         button.classList.add('btn', 'btn-primary', 'me-2')
         button.addEventListener('click', () => {
             containerPokedex.innerHTML = '';
-            generatePokedex(containerPokedex, value[0], value[1]);
+            if (inputSearch.value !== '') {
+                handleInput(inputSearch, containerPokedex);
+            } else {
+                generatePokedex(containerPokedex, value[0], value[1]);
+            }
         });
+
+        generatePokedex(containerPokedex, value[0], value[1]);
 
         if (gen === 'Gen 1') {
             defaultGen = button;
@@ -45,25 +51,30 @@ window.addEventListener('load', () => {
     });
 
     inputSearch.addEventListener('input', () => {
-        const value = inputSearch.value;
-        // Si c'est un nombre...
-        if (!isNaN(parseInt(value)) && value <= 1025) {
-            containerPokedex.innerHTML = '';
-            if (!cachePokemonElements.has(value)) {
-                cachePokemonElements.set(value, getPokemonContainer(value));
-            }
-            containerPokedex.appendChild(cachePokemonElements.get(value));
-        } else {
-            // Barre de recherche textuelle : on ne refresh plus la Gen 1 !
-            for (const pokemonElement of cachePokemonElements.values()) {
-                // pokemonElement = div content img + p
-                // si p.textContent contient value, alors
-                // retirer classe d-none
-                // sinon ajouter d-none
-            }
-        }
+        handleInput(inputSearch, containerPokedex);
     });
+
 });
+
+function handleInput(inputSearch, containerPokedex) {
+    const value = inputSearch.value;
+    // Si c'est un nombre...
+    containerPokedex.innerHTML = '';
+    if (!isNaN(parseInt(value)) && value <= 1025) {
+        if (!cachePokemonElements.has(value)) {
+            cachePokemonElements.set(value, getPokemonContainer(value));
+        }
+        containerPokedex.appendChild(cachePokemonElements.get(value));
+    } else {
+        // Barre de recherche textuelle : on ne refresh plus la Gen 1 !
+        cachePokemonElements.forEach((htmlElement, index) => {
+            const p = htmlElement.querySelector('p');
+            if (p.innerHTML.toLowerCase().includes(value.toLowerCase())) {
+                containerPokedex.appendChild(cachePokemonElements.get(index));
+            }
+        });
+    }
+}
 
 function generatePokedex(containerPokedex, begin, end) {
     for (let i = begin; i <= end ; i++) {
@@ -99,7 +110,6 @@ function getPokemonContainer(number) {
 
     const p = document.createElement('p');
     p.classList.add('text-center');
-    p.setAttribute('data-info', '');
 
     const url = 'https://pokeapi.co/api/v2/pokemon/' + number;
     fetch(url, {method: 'GET'})
