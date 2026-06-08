@@ -84,6 +84,9 @@ function getPokemonContainer(containerPokedex, number) {
         image.src = getImageUrlById(number);
     });
 
+    // TODO : fetch sur l'URL de l'ID du pokémon (voir cours sur les promises)
+    // TODO : ajouter le nom dans un <p> et ajouter le <p> en dessous de l'image, dans la div
+
     // Ajoute l'image en tant qu'enfant de la div.col-4
     div.appendChild(image);
 
