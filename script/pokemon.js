@@ -1,4 +1,3 @@
-
 const generations = new Map();
 generations.set('Gen 1', [1, 151]);
 generations.set('Gen 2', [152, 251]);
@@ -52,16 +51,15 @@ window.addEventListener('load', () => {
             defaultGen.click();
         }
     });
-
 });
 
 function generatePokedex(containerPokedex, begin, end) {
-    for (let i = begin; i <= end ; i++) {
+    for (let i = begin; i <= end; i++) {
         getPokemonContainer(containerPokedex, i);
     }
 }
 
-function getPokemonContainer(containerPokedex, number) {
+async function getPokemonContainer(containerPokedex, number) {
     // Créer la div.col-4 qui va englober l'image
     const div = document.createElement('div');
     // Gère le responsive !
@@ -74,7 +72,26 @@ function getPokemonContainer(containerPokedex, number) {
     const image = document.createElement('img');
     image.src = getImageUrlById(number);
     image.classList.add('img-fluid');
+    image.classList.add('w-100');
     image.alt = 'Image du Pokémon #' + number;
+
+    const txtName = document.createElement('p');
+    getPokemonObject(number).then((result) => {
+        txtName.classList.add('text-center');
+        txtName.classList.add('text-capitalize');
+        txtName.classList.add('h5');
+        txtName.textContent = result.name;
+        div.appendChild(txtName);
+
+        for (const type of result.types) {
+            const txtType = document.createElement('p');
+            txtType.classList.add('text-center');
+            txtType.classList.add('text-capitalize');
+            txtType.classList.add('h6');
+            txtType.textContent = type.type.name;
+            div.appendChild(txtType);
+        }
+    });
 
     image.addEventListener('mouseenter', () => {
         image.src = getImageUrlById(number, true);
@@ -93,8 +110,15 @@ function getPokemonContainer(containerPokedex, number) {
 
 function getImageUrlById(id, isShiny = false) {
     if (isShiny) {
-        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${id}.png`;
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${id}.png`;
     }
 
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`;
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+}
+
+function getPokemonObject(id) {
+    return fetch('https://pokeapi.co/api/v2/pokemon/' + id, {method: 'GET'})
+        .then(response => {
+            return response.json();
+        })
 }

@@ -54,7 +54,7 @@ class Cell {
     constructor(x, y, color, piece) {
         this.x = x;
         this.y = y;
-        color ? this.color = 'black' : this.color = 'white';
+        color ? this.color = 'grey' : this.color = 'white';
         this.piece = piece;
     }
 }
@@ -75,19 +75,117 @@ class ChessBoard {
             }
         }
 
+        // Black pieces
+        this.board.get('0-0').piece = new Rook('black');
+        this.board.get('0-1').piece = new Knight('black');
+        this.board.get('0-2').piece = new Bishop('black');
+        this.board.get('0-3').piece = new Queen('black');
+        this.board.get('0-4').piece = new King('black');
+        this.board.get('0-5').piece = new Bishop('black');
+        this.board.get('0-6').piece = new Knight('black');
+        this.board.get('0-7').piece = new Rook('black');
+
+        for (let col = 0; col < 8; col++) {
+            this.board.get(`1-${col}`).piece = new Pawn('black');
+        }
+
+        // White pieces
+        for (let col = 0; col < 8; col++) {
+            this.board.get(`6-${col}`).piece = new Pawn('white');
+        }
+
+        this.board.get('7-0').piece = new Rook('white');
+        this.board.get('7-1').piece = new Knight('white');
+        this.board.get('7-2').piece = new Bishop('white');
+        this.board.get('7-3').piece = new Queen('white');
+        this.board.get('7-4').piece = new King('white');
+        this.board.get('7-5').piece = new Bishop('white');
+        this.board.get('7-6').piece = new Knight('white');
+        this.board.get('7-7').piece = new Rook('white');
+
         console.log(this.board);
     }
+}
 
+const chessboard = new ChessBoard();
+let lastSelectedCell;
+
+function toggleCell(cellKey, cellColor) {
+    const cell = document.querySelector('[data-cell=\"' + cellKey + '\"]');
+    cell.classList.toggle("bg-" + cellColor);
+    cell.classList.toggle("bg-warning");
+}
+
+function movePiece(cellPosition, currentCell) {
+    let targetCell = chessboard.board.get(cellPosition);
+    targetCell.piece = currentCell.piece;
+    currentCell.piece = undefined;
+    lastSelectedCell = undefined;
+    refreshBoard();
+}
+
+function selectCell(e) {
+    console.log(e.currentTarget);
+    const cellPosition = e.currentTarget.attributes["data-cell"].nodeValue;
+    const selectedCell = chessboard.board.get(cellPosition);
+    console.log(selectedCell);
+
+    if (lastSelectedCell !== undefined)
+    {
+        movePiece(cellPosition, lastSelectedCell);
+    } else {
+        if (selectedCell.piece !== undefined) {
+            console.log(selectedCell.piece);
+            lastSelectedCell !== undefined && toggleCell(lastSelectedCell.x + "-" + lastSelectedCell.y, lastSelectedCell.color);
+            lastSelectedCell = selectedCell;
+            toggleCell(selectedCell.x + "-" + selectedCell.y, selectedCell.color);
+        }
+    }
 
 }
 
-window.addEventListener('load', () => {
+function refreshBoard() {
     const chessContainer = document.querySelector('.chessboard');
     if (!chessContainer) return;
 
-    const chessboard = new ChessBoard();
+    chessContainer.innerHTML = '';
+
     chessboard.board.forEach((cell, key) => {
+        let row;
+        cell.y === 0 ? row = document.createElement('div') : row = document.querySelector('.chessboard .row:last-of-type')
+        row.classList.add('row');
+        row.classList.add('column-gap-0');
+        const div = document.createElement('div');
+        div.classList.add('col-1');
+        div.classList.add('p-0');
+        div.classList.add('d-flex');
+        div.setAttribute('data-cell', key)
+        div.addEventListener('click', selectCell);
+        cell.color === 'white' ? div.classList.add("bg-white") : div.classList.add("bg-secondary")
 
+        const cbCell = document.createElement('div');
+        cbCell.classList.add('col-1');
+        cbCell.classList.add('ratio');
+        cbCell.classList.add('ratio-1x1');
+
+        div.appendChild(cbCell);
+        if (cell.piece !== undefined)
+        {
+            const piece = document.createElement('img');
+            piece.src = cell.piece.image;
+            piece.classList.add('img-fluid');
+            piece.classList.add('d-flex');
+            piece.classList.add('w-75');
+            piece.classList.add('h-75');
+            piece.classList.add('justify-content-center');
+            cbCell.appendChild(piece);
+        }
+
+        row.appendChild(div);
+        key.substring(key.length - 1) === '0' && chessContainer.appendChild(row);
     });
+}
 
+window.addEventListener('load', () => {
+    refreshBoard();
 });
