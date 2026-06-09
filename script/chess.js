@@ -122,6 +122,60 @@ function checkMove(currentCell, targetCell) {
     {
         authorized = false;
     }
+    if (authorized)
+    {
+        authorized = false;
+        const goesStraight = targetCell.y === currentCell.y;
+        const goesSideway = targetCell.x === currentCell.x;
+        switch (currentCell.piece.constructor.name) {
+            case "Pawn":
+                if (currentCell.piece.color === "white")
+                {
+                    if (targetCell.x === (currentCell.x-1) && targetCell.piece === undefined && goesStraight) {
+                        authorized = true;
+                    } else if (currentCell.x === 6 && targetCell.x === (currentCell.x-2) && goesStraight) {
+                        authorized = true;
+                    } else if (targetCell.piece !== undefined && targetCell.x === (currentCell.x-1) && (targetCell.y === (currentCell.y-1) || targetCell.y === (currentCell.y+1))) {
+                        authorized = true;
+                    }
+                } else if (currentCell.piece.color === "black")
+                {
+                    if (targetCell.x === (currentCell.x+1) && targetCell.piece === undefined && goesStraight) {
+                        authorized = true;
+                    } else if (currentCell.x === 1 && targetCell.x === (currentCell.x+2) && goesStraight) {
+                        authorized = true;
+                    } else if (targetCell.piece !== undefined && targetCell.x === (currentCell.x+1) && (targetCell.y === (currentCell.y-1) || targetCell.y === (currentCell.y+1))) {
+                        authorized = true;
+                    }
+                }
+                break;
+            case "Rook":
+                if (targetCell.x === currentCell.x || targetCell.y === currentCell.y) {
+                    authorized = true;
+                }
+                break;
+            case "Knight":
+                if ((targetCell.x === (currentCell.x+2) || targetCell.y === (currentCell.y+2) || targetCell.x === (currentCell.x-2) || targetCell.y === (currentCell.y-2)) && (targetCell.x === (currentCell.x+1) || targetCell.y === (currentCell.y+1) || targetCell.x === (currentCell.x-1) || targetCell.y === (currentCell.y-1))) {
+                    authorized = true;
+                }
+                break;
+            case "Bishop":
+                if (Math.abs(currentCell.x - targetCell.x) === Math.abs(currentCell.y - targetCell.y)) {
+                    authorized = true;
+                }
+                break;
+            case "Queen":
+                if (Math.abs(currentCell.x - targetCell.x) === Math.abs(currentCell.y - targetCell.y) || goesStraight || goesSideway) {
+                    authorized = true;
+                }
+                break;
+            case "King":
+                if (((currentCell.x + 1 ) === targetCell.x || (currentCell.x - 1 ) === targetCell.x || (currentCell.y + 1 ) === targetCell.y || (currentCell.y - 1 ) === targetCell.y) && (goesStraight || goesSideway)) {
+                    authorized = true;
+                }
+                break;
+        }
+    }
 
     return authorized;
 }
@@ -129,7 +183,7 @@ function checkMove(currentCell, targetCell) {
 function movePiece(cellPosition, currentCell) {
     let targetCell = chessboard.board.get(cellPosition);
 
-    console.log(checkMove(currentCell, targetCell));
+    //console.log(checkMove(currentCell, targetCell));
 
     if (checkMove(currentCell, targetCell))
     {
@@ -143,17 +197,17 @@ function movePiece(cellPosition, currentCell) {
 }
 
 function selectCell(e) {
-    console.log(e.currentTarget);
+    //console.log(e.currentTarget);
     const cellPosition = e.currentTarget.attributes["data-cell"].nodeValue;
     const selectedCell = chessboard.board.get(cellPosition);
-    console.log(selectedCell);
+    //console.log(selectedCell);
 
     if (lastSelectedCell !== undefined)
     {
         movePiece(cellPosition, lastSelectedCell);
     } else {
         if (selectedCell.piece !== undefined) {
-            console.log(selectedCell.piece);
+            //console.log(selectedCell.piece);
             lastSelectedCell = selectedCell;
             toggleCell(selectedCell.x + "-" + selectedCell.y, selectedCell.color);
         }
