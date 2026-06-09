@@ -59,6 +59,6 @@ function generateSearchBars(tables) {
 }
 
 window.addEventListener('load', () => {
-    const tables = document.querySelectorAll(".data-table");
+    const tables = document.querySelectorAll(".table.data-table");
     generateSearchBars(tables);
 });

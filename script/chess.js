@@ -116,12 +116,30 @@ function toggleCell(cellKey, cellColor) {
     cell.classList.toggle("bg-warning");
 }
 
+function checkMove(currentCell, targetCell) {
+    let authorized = true;
+    if (targetCell.piece !== undefined && currentCell.piece.color === targetCell.piece.color)
+    {
+        authorized = false;
+    }
+
+    return authorized;
+}
+
 function movePiece(cellPosition, currentCell) {
     let targetCell = chessboard.board.get(cellPosition);
-    targetCell.piece = currentCell.piece;
-    currentCell.piece = undefined;
+
+    console.log(checkMove(currentCell, targetCell));
+
+    if (checkMove(currentCell, targetCell))
+    {
+        targetCell.piece = currentCell.piece;
+        currentCell.piece = undefined;
+        refreshBoard();
+    } else {
+        toggleCell(currentCell.x + "-" + currentCell.y, currentCell.color);
+    }
     lastSelectedCell = undefined;
-    refreshBoard();
 }
 
 function selectCell(e) {
@@ -136,7 +154,6 @@ function selectCell(e) {
     } else {
         if (selectedCell.piece !== undefined) {
             console.log(selectedCell.piece);
-            lastSelectedCell !== undefined && toggleCell(lastSelectedCell.x + "-" + lastSelectedCell.y, lastSelectedCell.color);
             lastSelectedCell = selectedCell;
             toggleCell(selectedCell.x + "-" + selectedCell.y, selectedCell.color);
         }
@@ -155,32 +172,34 @@ function refreshBoard() {
         cell.y === 0 ? row = document.createElement('div') : row = document.querySelector('.chessboard .row:last-of-type')
         row.classList.add('row');
         row.classList.add('column-gap-0');
+        row.classList.add('justify-content-center');
+
         const div = document.createElement('div');
         div.classList.add('col-1');
         div.classList.add('p-0');
-        div.classList.add('d-flex');
         div.setAttribute('data-cell', key)
         div.addEventListener('click', selectCell);
         cell.color === 'white' ? div.classList.add("bg-white") : div.classList.add("bg-secondary")
 
         const cbCell = document.createElement('div');
-        cbCell.classList.add('col-1');
         cbCell.classList.add('ratio');
         cbCell.classList.add('ratio-1x1');
+        const pieceDiv = document.createElement('div');
+        pieceDiv.classList.add('d-flex');
 
         div.appendChild(cbCell);
         if (cell.piece !== undefined)
         {
             const piece = document.createElement('img');
             piece.src = cell.piece.image;
-            piece.classList.add('img-fluid');
-            piece.classList.add('d-flex');
             piece.classList.add('w-75');
             piece.classList.add('h-75');
-            piece.classList.add('justify-content-center');
-            cbCell.appendChild(piece);
+            piece.classList.add('m-auto');
+            piece.classList.add('d-block');
+            pieceDiv.appendChild(piece);
         }
 
+        cbCell.appendChild(pieceDiv);
         row.appendChild(div);
         key.substring(key.length - 1) === '0' && chessContainer.appendChild(row);
     });
