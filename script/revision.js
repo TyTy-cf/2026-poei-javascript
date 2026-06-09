@@ -51,7 +51,7 @@ function generateSearchBars(tables) {
         row.appendChild(counterDiv);
         row.appendChild(input);
 
-        head.parentElement.parentElement.prepend(row);
+        table.parentElement.insertBefore(row, table);
         searchInTable(table, input, counter);
 
         input.addEventListener("input", () => searchInTable(table, input, counter));
