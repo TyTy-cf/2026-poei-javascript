@@ -46,6 +46,7 @@ class Pawn extends Piece {
 }
 
 class Cell {
+    id;
     x;
     y;
     color;
@@ -64,14 +65,17 @@ class ChessBoard {
     board = new Map();
 
     constructor() {
-        let color = true;
-        for (let i = 0; i < 8; i++) {
-            for (let j = 0; j < 8; j++) {
+        let color = false;
+        let tmpId = 1;
+        for (let i = 1; i <= 8; i++) {
+            for (let j = 8; j > 0; j--) {
                 const cell = new Cell(i, j, color, undefined);
+                cell.id = tmpId;
                 if (j !== 7) {
                     color = !color;
                 }
                 this.board.set(i + '-' + j, cell);
+                tmpId++;
             }
         }
 
